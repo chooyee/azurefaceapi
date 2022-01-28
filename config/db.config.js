@@ -1,8 +1,10 @@
+require('dotenv').config();
+
 module.exports = {
-    HOST: "adjustdb.c4ltbhanigkc.ap-southeast-1.rds.amazonaws.com",
-    USER: "admin",
-    PASSWORD: "Adjust123$",
-    DB: "facereplus",
+    HOST: process.env.DB_HOST,
+    USER: process.env.DB_USER,
+    PASSWORD: process.env.DB_PWD,
+    DB: process.env.DB_NAME,
     dialect: "mysql",
     port:3306,
     pool: {
