@@ -17,9 +17,7 @@ exports.Upload = async(req, res, next)=>{
     try{
         console.log('Upload to s3');
         const uploadS3Result = await S3Service._uploadS3(file.path, file.filename, s3BucketName);
-        logger.log.info(`S3 upload result ${uploadS3Result}`);
-        console.log(`S3 upload result ${uploadS3Result}`);
-        
+       
         if (uploadS3Result.status==Enum.Status.Success)
         {
             logger.log.info(`uploaded to ${uploadS3Result.s3Loc}`);
