@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Shopify Xml Feed For Shop.com </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.2.1/flatly/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="../assets/js/simpleXML.js"></script>
+    <link rel="stylesheet" href="../assets/css/simpleXML.css" />
+    <script language="javascript">
+        $(document).ready(function () {            
+            try {
+                $("#simpleUseCase").empty().simpleXML({ xmlString: $("#xmlsource").html() });
+            } catch (e) {
+                $("#simpleUseCase").empty().append("Exception caught running plugin : " + ex);
+                alert(e);
+            }
+        });
+    </script>
+    <style>
+    body { background-color: #fafafa; }
+    .container { margin: 50px auto; }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Your personal '{{shop}}' xml feed for Shop.com</h3>
+
+    <h4><a href='{{s3uri}}'' target='_blank'>{{s3uri}}</a></h4>
+
+    <p>
+        <b>Instruction:</b>
+        <pre>Provide this xml feed {{s3uri}} to Shop.com</pre>
+
+        <b>Output</b>
+        <div id="simpleUseCase"></div>
+    </p>
+
+    <div id='xmlsource' style="display:none">{{{xml}}}</div>
+    
+</div>
+
+</body>
+</html>

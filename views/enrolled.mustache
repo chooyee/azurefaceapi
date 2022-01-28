@@ -1,0 +1,283 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="shortcut icon" href="../assets/img/fav.png" />
+
+    <meta name="author" content="{{createdBy}}" />
+
+    <meta name="description" content="Shopify to Shop.com xml feed generator app" />
+
+    <meta name="keywords" content="Shop.com, Shop.com xml feed generator, shopify app, xml feed" />
+
+    <meta charset="UTF-8" />
+
+    <title>Shopify xml feed for Shop.com</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/linearicons.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />    
+    <link rel="stylesheet" type="text/css" href="../assets/css/magnific-popup.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/nice-select.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/hexagons.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/main.css" />
+    <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
+     <style>
+        @font-face{font-family:feather;src:url(../assets/fonts/cc5143b.eot);src:url(../assets/fonts/cc5143b.eot#iefix) format("embedded-opentype"),url(../assets/fonts/2cf523c.woff) format("woff"),url(../assets/fonts/b8e9cbc.ttf) format("truetype"),url(../assets/img/4a878d5.svg#feather) format("svg")
+        }
+        .fe{font-family:feather!important;speak:none;font-style:normal;font-weight:400;-webkit-font-feature-settings:normal;font-feature-settings:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
+        }
+        .fe-arrow-right:before{content:"\E911" }
+        .fe-check:before{content:"\E92A" }
+        #headerMenuCollapse[data-v-c17a8298] {
+            position: absolute;
+            left: 0;
+            right: 0;
+            padding: 0 15px;
+        }
+        .stepwizard-step p[data-v-c17a8298] {
+            margin-top: 10px;
+            display: inline-block;
+            font-weight: 500;
+            margin-left: 10px;
+            font-size: 14px;
+            color: #a2a9b8
+        }
+
+        .stepwizard-step .line[data-v-c17a8298] {
+            background-color: #ddd
+        }
+
+        .stepwizard-step .line[data-v-c17a8298],
+        .stepwizard-step .line.active[data-v-c17a8298] {
+            position: relative;
+            top: -3px;
+            right: -5px;
+            display: inline-block;
+            height: 2px;
+            width: 60px
+        }
+
+        .stepwizard-step .line.active[data-v-c17a8298] {
+            background-color: #6371c7
+        }
+
+        .stepwizard-step .btn-circle[data-v-c17a8298] {
+            background-color: #c5c9e1;
+            border-radius: 50%;
+            min-width: auto;
+            line-height: normal;
+            padding: 0;
+            color: #333
+        }
+
+        .stepwizard-step.active .btn[data-v-c17a8298],
+        .stepwizard-step .btn-primary[data-v-c17a8298] {
+            background-color: #0044af;
+            color: #fff;
+            text-transform: uppercase
+        }
+
+        .stepwizard-step .btn-primary[data-v-c17a8298] {
+            font-size: 14px
+        }
+
+        .stepwizard-step.active p[data-v-c17a8298] {
+            color: #0044af
+        }
+
+        .stepwizard-row[data-v-c17a8298] {
+            display: table-row
+        }
+
+        .stepwizard[data-v-c17a8298] {
+            display: table;
+            width: 100%;
+            position: relative;
+            padding: 8px 0
+        }
+
+        .stepwizard-step[data-v-c17a8298] {
+            display: table-cell;
+            text-align: center;
+            position: relative;
+        }
+
+        .stepwizard-step .btn-circle[data-v-c17a8298] {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 14px;
+            line-height: 12px;
+            border-radius: 38px
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header class="default-header">
+        <nav class="navbar1 navbar-expand-lg  navbar-light">
+            <div id="headerMenuCollapse" class="header collapse d-lg-flex p-0 bg-white" data-v-c17a8298="">
+                <div class="container" data-v-c17a8298="">
+                    <div class="row align-items-center" data-v-c17a8298="">
+                        <div class="col-lg-12" data-v-c17a8298="">
+                            <div class="stepwizard" data-v-c17a8298="">
+                                <div class="stepwizard-row" data-v-c17a8298="">
+                                    <div class="stepwizard-step" data-v-c17a8298=""><button type="button" class="btn btn-default btn-circle " data-v-c17a8298=""><i class="fe fe-check" data-v-c17a8298=""></i></button>
+                                        <p data-v-c17a8298="">Welcome!</p>
+                                        {{! <div class="line active" data-v-c17a8298=""></div> }}
+                                    </div>   
+                                    <div class="stepwizard-step" data-v-c17a8298=""><button type="button" disabled="disabled" class="btn btn-default btn-circle" data-v-c17a8298=""><i class="fe fe-check" data-v-c17a8298=""></i></button>
+                                        <p data-v-c17a8298="">Subsribe</p>
+                                    </div>
+                                    <div class="stepwizard-step active" data-v-c17a8298=""><button type="button" disabled="disabled" class="btn btn-default btn-circle" data-v-c17a8298="">3</button>
+                                        <p data-v-c17a8298="">Thank you!</p>
+                                    </div>
+                                    {{! <div class="stepwizard-step active" data-v-c17a8298=""><button type="button" class="btn btn-default btn-circle " data-v-c17a8298=""><i class="fe fe-check" data-v-c17a8298=""></i></button>
+                                        <p data-v-c17a8298="">Subscribed</p>                                       
+                                    </div>                                   }}
+                                    {{! <div class="stepwizard-step" data-v-c17a8298=""><button type="button" disabled="disabled" class="btn btn-default btn-circle" data-v-c17a8298="">2</button>
+                                        <p data-v-c17a8298="">Data Sync</p>
+                                        <div class="line" data-v-c17a8298=""></div>
+                                    </div>
+                                    <div class="stepwizard-step" data-v-c17a8298=""><button type="button" disabled="disabled" class="btn btn-default btn-circle" data-v-c17a8298="">3</button>
+                                        <p data-v-c17a8298="">Thank you</p>
+                                        <div class="line" data-v-c17a8298=""></div>
+                                    </div>
+                                    <div class="stepwizard-step" data-v-c17a8298=""><button type="submit" class="btn btn-primary" data-v-c17a8298="">Next<i class="fe fe-arrow-right" data-v-c17a8298=""></i></button></div> }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="search-input" id="search-input-box">
+            <div class="container">
+                <form class="d-flex justify-content-between">
+                    <input type="text" class="form-control" id="search-input" placeholder="Search Here" />
+                    <button type="submit" class="btn"></button>
+                    <span class="lnr lnr-cross" id="close-search" title="Close Search"></span>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    {{! <section class="home-banner-area">
+        <div class="container">
+            <div class="row justify-content-center fullscreen align-items-center">
+                <div class="info-header col-lg-5 col-md-8 home-banner-left">
+                    <h1 class="text-white">Shop.com Dynamic Xml Feeds</h1>
+                    <h3>Thank you for joining!</h3>                   
+                    <p class="mx-auto text-white  mt-20 mb-40">
+                        This "Shop.com Xml Feeds" in a Shopify App that generates XML feeds turns collections to categories, and products for "Shop.com".  
+                        With this "Shop.com Xml Feeds", you can share your products and collections (as category) to Shop.com by adding them as Sales Channel.                         
+                    </p>
+                </div>
+                <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
+                    <img class="img-fluid" src="../assets/img/header-img.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </section> }}
+     <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+                    <div class="sidebar-wrapper">
+                        <div class="logo">Shop.com Xml Feed                   
+                        </div>
+                        <ul class="nav">
+                            <li>
+                                <a class="nav-link active" href="/dashboard">
+                                    <i class="nc-icon nc-chart-pie-35"></i>
+                                    <p>Dashboard</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="/profile">
+                                    <i class="nc-icon nc-circle-09"></i>
+                                    <p>User Profile</p>
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item active active-pro">
+                                <a class="nav-link active" href="contact">
+                                    <i class="nc-icon nc-alien-33"></i>
+                                    <p>Contact us</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+    <section class="popular-course-area">        
+        <div class="container-fluid">        
+            <div class="row justify-content-center section-title">               
+                <div class="col-lg-12">                   
+                    <p>
+                         <div class="card-body table-full-width table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Xml Feed</th>  
+                                    <th>Date Updated</th>                                           
+                                </thead>                                
+                                <tbody>                                            
+                                    <tr>
+                                        <td>1</td>
+                                        <td><a href='{{s3uri}}' target="_blank">{{s3uri}}</a></td>   
+                                        <td>{{dateupdated}}</td>                                           
+                                    </tr>                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </p>
+                </div>
+            </div>
+           
+    </section>
+    {{! <footer class="footer-area section-gap">
+        <div class="container">
+         
+            <div class="footer-bottom row align-items-center">
+                <p class="footer-text m-0 col-lg-8 col-md-12">
+
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved by chooyee.co
+                </p>
+                <div class="col-lg-4 col-md-12 footer-social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-dribbble"></i></a>
+                    <a href="#"><i class="fa fa-behance"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer> }}
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha512-DUC8yqWf7ez3JD1jszxCWSVB0DMP78eOyBpMa5aJki1bIRARykviOuImIczkxlj1KhVSyS16w2FSQetkD4UU2w==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>   
+    <script src="../assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="../assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../assets/js/parallax.min.js"></script>
+    <script src="../assets/js/owl.carousel.min.js"></script>
+    <script src="../assets/js/jquery.sticky.js"></script>
+    <script src="../assets/js/hexagons.min.js"></script>
+    <script src="../assets/js/jquery.counterup.min.js"></script>
+    <script src="../assets/js/waypoints.min.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
+    <script src="../assets/js/main.js"></script>
+</body>
+
+</html>
