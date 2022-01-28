@@ -29,5 +29,4 @@ benchmarks/graphs
 xml
 database.sqlite
 .env
-.env_dev
 .env_prod
