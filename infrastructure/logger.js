@@ -15,7 +15,7 @@ exports.log = pino({
     timestamp: () => `,"time":"${new Date(Date.now()).addHours(8).toISOString()}"`
     //prettyPrint: {translateTime:true }
     },
-    pino.destination(`${__dirname}/log/${getDate()}.log`)
+    pino.destination(`./log/${getDate()}.log`)
 )
 
 function getDate(){
