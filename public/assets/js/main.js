@@ -117,8 +117,14 @@ var filePicked = false;
       let rect = cv.boundingRect(contour);
 
       imageROI = imageOriginal.roi(rect);
+
+      if (rect.height > rect.width)
+      {
+        cv.rotate(imageROI, imageROI, cv.ROTATE_90_CLOCKWISE);      
+      }
+
       var maxWidth = 480;
-      var newHeight = rect.height * (maxWidth/rect.width);
+      var newHeight = imageROI.rows * (maxWidth/imageROI.cols);
       
       let dsize = new cv.Size(maxWidth, newHeight);
       // You can try more different parameters
