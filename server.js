@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-var session = require('express-session')
 const mustacheExpress = require('mustache-express');
 const cors = require("cors");
 const multer  = require('multer')
@@ -13,17 +12,12 @@ var corsOptions = {
     origin: "http://localhost:3000"
 };
 
-var sess = {
-    secret: 'Orchid ',
-    cookie: {}
-}
      
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     sess.cookie.secure = true // serve secure cookies
 }
      
-app.use(session(sess))
 app.use(cors(corsOptions));
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
