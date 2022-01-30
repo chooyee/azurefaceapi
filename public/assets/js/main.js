@@ -120,7 +120,7 @@ var filePicked = false;
 
       if (rect.height > rect.width)
       {
-        cv.rotate(imageROI, imageROI, cv.ROTATE_90_CLOCKWISE);      
+        cv.rotate(imageROI, imageROI, cv.ROTATE_90_COUNTERCLOCKWISE);      
       }
 
       var maxWidth = 480;
@@ -149,7 +149,7 @@ var filePicked = false;
       let result = cv.minMaxLoc(dst, mask);
       console.log(result);
       dst.delete(); mask.delete();
-      if (result.maxLoc.x>340 && result.maxLoc.y <60)
+      if (result.maxLoc.x>300 && result.maxLoc.y <60)
       {        
         let maxPoint = result.maxLoc;
         let color = new cv.Scalar(255, 0, 0, 255);
