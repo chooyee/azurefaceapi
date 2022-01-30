@@ -13,13 +13,31 @@ var filePicked = false;
     });
     
     imgElement.on('load', function(){
-      console.log('in');      
+      console.log('in'); 
       let mat = cv.imread(imgElement.attr('id'));
+      if (mat.rows > mat.cols)
+      {
+        cv.rotate(mat, mat, cv.ROTATE_90_CLOCKWISE);
+        //rotate
+      } 
+      $("#btnRotate").show();
+      CureImg(mat);
+    });
+
+    function CureImg(mat)
+    {
       mat = contours(mat);
       cv.imshow('canvasOutput', mat);
       mat.delete();
       OverlayWatermark();
-    });
+    }
+
+    function Rotate180()
+    {
+      let mat = cv.imread($("#canvasOutput").attr('id'));
+      cv.rotate(mat, mat, cv.ROTATE_180);
+      CureImg(mat);
+    }
 
     function OverlayWatermark()
     {
@@ -137,10 +155,11 @@ var filePicked = false;
               fd.append('fingerprint', $('#fprint').val());
               Upload(fd); //upload the "formData", not the "blob"
             },'image/jpeg', 0.95);
-           
-            
             
         });
+        $("#btnRotate").click(function(){
+          Rotate180();
+        })
     });
 
     function Upload(fd)
