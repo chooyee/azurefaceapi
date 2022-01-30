@@ -15,28 +15,53 @@ var filePicked = false;
     imgElement.on('load', function(){
       console.log('in'); 
       let mat = cv.imread(imgElement.attr('id'));
-      if (mat.rows > mat.cols)
-      {
-        cv.rotate(mat, mat, cv.ROTATE_90_CLOCKWISE);
-        //rotate
-      } 
-      $("#btnRotate").show();
-      CureImg(mat);
-    });
-
-    function CureImg(mat)
-    {
       mat = contours(mat);
       cv.imshow('canvasOutput', mat);
       mat.delete();
+
+      $("#btnRotate").show();
+
+      let template = cv.imread($('#template').attr('id'));
+
+      let i =0;
+      let matched= false;
+      for (i=0;i<4;i++)
+      {
+        let src = cv.imread(canvasOutput);
+        if (!match(src, template))
+        {
+          cv.rotate(src, src, cv.ROTATE_90_CLOCKWISE);          
+        }
+        else
+        {
+          matched = true;
+          break;
+        }
+      }
+      if (!matched)
+      {
+        alert("Couldnt determined is an NRIC. Pls retry.");
+        return;
+      }
+
       OverlayWatermark();
-    }
+      
+    });
+
+    // function CureImg(mat)
+    // {
+    //   mat = contours(mat);
+    //   cv.imshow('canvasOutput', mat);
+    //   mat.delete();
+    //   OverlayWatermark();
+    // }
 
     function Rotate180()
     {
-      let mat = cv.imread($("#canvasOutput").attr('id'));
-      cv.rotate(mat, mat, cv.ROTATE_180);
-      CureImg(mat);
+      let mat = cv.imread('canvasOutput');
+      cv.rotate(mat, mat, cv.ROTATE_90_CLOCKWISE);      
+      cv.imshow('canvasOutput', mat);
+      OverlayWatermark();
     }
 
     function OverlayWatermark()
@@ -108,6 +133,30 @@ var filePicked = false;
       imageThresh.delete();
 
       return imageResized;
+    }
+
+    function match(src, template)
+    {
+      let dst = new cv.Mat();
+      let mask = new cv.Mat();
+      cv.matchTemplate(src, template, dst, cv.TM_CCOEFF, mask);
+      let result = cv.minMaxLoc(dst, mask);
+      console.log(result);
+      dst.delete(); mask.delete();
+      if (result.maxLoc.x>340 && result.maxLoc.y <60)
+      {        
+        let maxPoint = result.maxLoc;
+        let color = new cv.Scalar(255, 0, 0, 255);
+        let point = new cv.Point(maxPoint.x + template.cols, maxPoint.y + template.rows);
+        cv.rectangle(src, maxPoint, point, color, 2, cv.LINE_8, 0);
+        cv.imshow('canvasOutput', src);
+        return true;
+      }
+      else
+      {        
+        return false;
+      }
+
     }
 
     function getBiggestCountours(contours)

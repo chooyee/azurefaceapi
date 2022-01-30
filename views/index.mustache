@@ -165,9 +165,11 @@
                           <img id="imageSrc" alt="No Image"/>                          
                         </div>  
                         <div class="input-group">
-                          <canvas id="canvasOutput" ></canvas>
+                          <canvas id="canvasOutput" ></canvas>                          
+                        </div>
+                        <div class="input-group">                          
                            <a href="javascript:void(0)" class="btn btn-primary btn-round btn-lg" id="btnRotate" style="display:none">Rotate Image</a>
-                        </div>            
+                        </div>              
                         <div class="card-footer">
                           <a href="javascript:void(0)" class="btn btn-primary btn-round btn-lg" id="btnSubmit">Submit</a>
                         </div>
@@ -257,6 +259,7 @@
     </footer>
   </div>
   <input type="hidden" id="fprint">
+  <img src="./assets/img/template.jpg" id="template" style="display:none">
   <!--   Core JS Files   -->
   <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
   <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
