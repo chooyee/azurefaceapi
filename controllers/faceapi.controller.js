@@ -1,7 +1,7 @@
 const logger = require('../infrastructure/logger');
 const Enum = require('../infrastructure/enum.util');
 const S3Service = require('../service/s3.service');
-//const AzureFaceApi = require('../service/azure.service');
+const AzureFaceApi = require('../service/azure.service');
 const TransacDB = require('../models/transaction.model');
 const s3BucketName = "faceapi.chooyee.co/azure";
 
@@ -48,6 +48,15 @@ exports.Upload = async(req, res, next)=>{
 }
 
 exports.FaceMatch = async(req, res)=>{
-
+    let result = await AzureFaceApi.faceMatch(req.query.url);
+    if (result.status==Enum.Status.Success){
+        logger.log.info(`FaceMatch Result: ${result.result.confidence}`);
+        console.log(`FaceMatch Result: ${result.result.confidence}`);
+    }
+    else{
+        logger.log.info(`FaceMatch Result: ${result.message}`);
+        console.log(`FaceMatch Result: ${result.message}`);
+    }
+    res.status(200).send(result);
 }
 

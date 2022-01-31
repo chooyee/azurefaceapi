@@ -76,10 +76,7 @@ app.post('/upload', (req, res)=>{
     res.send("Success, Image uploaded!");
 });
 
-app.get("/match", (req, res) => {
-    //f= new FaceApiService();
-    faceApi.FaceMatch();
-});
+app.get("/match", faceController.FaceMatch);
 
 
 app.post('/fetch_external_image', async (req, res) => {

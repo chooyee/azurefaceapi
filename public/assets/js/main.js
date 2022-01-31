@@ -14,33 +14,27 @@ var filePicked = false;
     
     imgElement.on('load', function(){
       console.log('in'); 
-      let mat = cv.imread(imgElement.attr('id'));
-      mat = contours(mat);
+      let imgsrc = cv.imread(imgElement.attr('id'));
+      let mat = contours(imgsrc);
       cv.imshow('canvasOutput', mat);
       mat.delete();
 
       $("#btnRotate").show();
 
-      let template = cv.imread($('#template').attr('id'));
-
-      let i =0;
-      let matched= false;
-      for (i=0;i<4;i++)
-      {
-        let src = cv.imread(canvasOutput);
-        if (!match(src, template))
-        {
-          cv.rotate(src, src, cv.ROTATE_90_CLOCKWISE);          
-        }
-        else
-        {
-          matched = true;
-          break;
-        }
+      let templ = cv.imread($('#template').attr('id'));
+      let matched = false;
+      if (!AutoRotate(templ))
+      {       
+        cv.imshow('canvasOutput', imgsrc);
+        matched = match(imgsrc, templ);
       }
+      else{
+        matched = true;
+      }
+
       if (!matched)
       {
-        alert("Couldnt determined is an NRIC. Pls retry.");
+        alert("Cound not verify as NRIC");
         return;
       }
 
@@ -56,11 +50,35 @@ var filePicked = false;
     //   OverlayWatermark();
     // }
 
+    function AutoRotate(template)
+    {
+      let matched= false;
+      for (i=0;i<1;i++)
+      {
+        let src = cv.imread(canvasOutput);
+        if (!match(src, template))
+        {
+          cv.rotate(src, src, cv.ROTATE_90_CLOCKWISE);  
+          cv.imshow('canvasOutput', src);        
+        }
+        else
+        {
+          
+          matched = true;
+          break;
+        }
+       
+      }
+      
+      return matched;
+    }
+
     function Rotate180()
     {
       let mat = cv.imread('canvasOutput');
       cv.rotate(mat, mat, cv.ROTATE_90_CLOCKWISE);      
       cv.imshow('canvasOutput', mat);
+      mat.delete();
       OverlayWatermark();
     }
 
@@ -94,8 +112,9 @@ var filePicked = false;
       cv.cvtColor(imageOriginal, imageGray, cv.COLOR_BGR2GRAY);
 
       //Threshold the image https://docs.opencv.org/3.4/d7/dd0/tutorial_js_thresholding.html
-      cv.threshold(imageGray, imageThresh, 120, 200, cv.THRESH_BINARY);
-
+      cv.threshold(imageGray, imageThresh, 50, 100, cv.THRESH_BINARY);
+      //cv.Canny(imageThresh, imageThresh, 100,200);
+      //return imageThresh;
       //Step 1: Find the Contours
       //Good reference: https://docs.opencv.org/master/d0/d43/tutorial_js_table_of_contents_contours.html
       //Good reference: https://docs.opencv.org/master/d4/d73/tutorial_py_contours_begin.html
