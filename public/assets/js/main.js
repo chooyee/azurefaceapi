@@ -181,6 +181,10 @@ var filePicked = false;
         let color = new cv.Scalar(255, 0, 0, 255);
         let point = new cv.Point(maxPoint.x + template.cols, maxPoint.y + template.rows);
         cv.rectangle(src, maxPoint, point, color, 2, cv.LINE_8, 0);
+
+        let startpoint = new cv.Point(10, maxPoint.y + template.rows);
+        let endpoint = new cv.Point(180, maxPoint.y + template.rows + 20);
+        cv.rectangle(src, startpoint, endpoint, color, -1, cv.LINE_8, 0);
         cv.imshow('canvasOutput', src);
         return true;
       }
