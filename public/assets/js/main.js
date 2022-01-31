@@ -24,9 +24,10 @@ var filePicked = false;
       let templ = cv.imread($('#template').attr('id'));
       let matched = false;
       if (!AutoRotate(templ))
-      {       
-        cv.imshow('canvasOutput', imgsrc);
-        matched = match(imgsrc, templ);
+      {
+        let imgResized = resizeImg(imgsrc);       
+        cv.imshow('canvasOutput', imgResized);        
+        matched = match(imgResized, templ);
       }
       else{
         matched = true;
@@ -79,7 +80,6 @@ var filePicked = false;
       cv.rotate(mat, mat, cv.ROTATE_90_CLOCKWISE);      
       cv.imshow('canvasOutput', mat);
       mat.delete();
-      OverlayWatermark();
     }
 
     function OverlayWatermark()
@@ -142,12 +142,7 @@ var filePicked = false;
         cv.rotate(imageROI, imageROI, cv.ROTATE_90_COUNTERCLOCKWISE);      
       }
 
-      var maxWidth = 480;
-      var newHeight = imageROI.rows * (maxWidth/imageROI.cols);
-      
-      let dsize = new cv.Size(maxWidth, newHeight);
-      // You can try more different parameters
-      cv.resize(imageROI, imageResized, dsize, 0, 0, cv.INTER_AREA);
+      imageResized = resizeImg(imageROI);
 
       imageDestination.delete();
       imageGray.delete();
@@ -157,6 +152,18 @@ var filePicked = false;
       imageOverlay.delete();
       imageThresh.delete();
 
+      return imageResized;
+    }
+
+    function resizeImg(imageROI)
+    {
+      let imageResized = new cv.Mat();
+      var maxWidth = 480;
+      var newHeight = imageROI.rows * (maxWidth/imageROI.cols);
+      
+      let dsize = new cv.Size(maxWidth, newHeight);
+      // You can try more different parameters
+      cv.resize(imageROI, imageResized, dsize, 0, 0, cv.INTER_AREA);
       return imageResized;
     }
 
