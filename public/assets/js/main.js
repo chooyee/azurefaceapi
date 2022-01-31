@@ -21,7 +21,7 @@ var filePicked = false;
 
       $("#btnRotate").show();
 
-      let templ = cv.imread($('#template').attr('id'));
+      let templ = cv.imread($('#template_flag').attr('id'));
       let matched = false;
       if (!AutoRotate(templ))
       {
@@ -35,7 +35,7 @@ var filePicked = false;
 
       if (!matched)
       {
-        alert("Cound not verify as NRIC");
+        //alert("Cound not verify as NRIC");
         return;
       }
 
