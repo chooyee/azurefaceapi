@@ -1,5 +1,6 @@
 const db = require("../models");
 const logger = require('../infrastructure/logger');
+const { Op } = require("sequelize");
 
 class TransactionModel{
 
@@ -10,7 +11,7 @@ class TransactionModel{
     Create = async (userid, image_1,image_1_url, filename, fingerprint, ipaddress, useragent)=>{
         console.log('TransactionModel:Create');
         
-        this.TransacDB.create({              
+        return this.TransacDB.create({              
             userid: userid,
             image_1: image_1,
             image_1_url: image_1_url, 
@@ -21,7 +22,8 @@ class TransactionModel{
             transdate: new Date().getTime(),
             
         }).then((result)=>{
-            return result;
+            console.log(result.id);
+            return result.id;
         }).catch((err)=>{
             console.log(`TransactionModel=>Create: Error: ${err.message}`);            
             logger.log.error(`TransactionModel=>Create: Error: ${err.message}`);
@@ -58,10 +60,33 @@ class TransactionModel{
         }
     }
 
-    Update = async (id, faceapijs) =>{
+    GetAllNew = async () =>{
+        console.log('TransactionModel:GetAllNew');
+
+        const transaction = await this.TransacDB.findAll({
+            where: {
+                status: {
+                  [Op.ne]: true
+                }
+              }
+        })
+        .catch(err => {
+            console.log(err.message);          
+            logger.log.error(err.message);
+            throw new Error('DB error:' + err.message);
+        });
+
+        if (transaction === null) {
+            return null;
+        } else {
+            return transaction;
+        }
+    }
+
+    Update = async (id, confidence, identical, message, status) =>{
         console.log('TransactionModel:Update');
 
-        await this.TransacDB.update({ faceapijs: faceapijs }, {
+        await this.TransacDB.update({ confidence: confidence,  identical:identical, message:message, status:status}, {
             where: {
                 id: id
             }

@@ -22,7 +22,8 @@
     "mysql2": "^2.3.3",
     "pino": "^6.11.3",
     "pino-pretty": "^4.7.1",
-    "sequelize": "^6.6.2"
+    "sequelize": "^6.6.2",
+    "sleep": "^6.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

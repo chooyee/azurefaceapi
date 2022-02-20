@@ -24,8 +24,8 @@ app.set('view engine', 'mustache');
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 
-// const db = require("./models");
-// db.sequelize.sync({'alter':true});
+const db = require("./models");
+db.sequelize.sync({'alter':true});
 
 const viewsDir = path.join(__dirname, 'views');
 app.use(express.static(viewsDir));
@@ -41,6 +41,7 @@ var storage = multer.diskStorage({
         cb(null, file.originalname + "-" + Date.now()+".jpg")
     }
 })
+
 var upload = multer({ 
     storage: storage,
     limits: { fileSize: maxSize },
@@ -64,10 +65,18 @@ var upload = multer({
 // mypic is the name of file attribute
 }); 
 
+var uploadMultiple = multer({ 
+    storage: storage,
+    limits: { fileSize: maxSize },
+}); 
+
 // app.get('/', (req, res) => res.redirect('/face_detection'))
 app.get('/', (req, res) => res.render('index'));
+app.get('/video', (req, res) => res.render('video'));
 
 app.post('/profile', upload.single('image'), faceController.Upload)
+
+app.post('/video', uploadMultiple.array('images'), faceController.UploadMultiple);
 
 app.post('/upload', (req, res)=>{
     console.log(req);
@@ -77,7 +86,7 @@ app.post('/upload', (req, res)=>{
 });
 
 app.get("/match", faceController.FaceMatch);
-
+app.get("/getall", faceController.ProcessNew);
 
 app.post('/fetch_external_image', async (req, res) => {
     const { imageUrl } = req.body
@@ -91,6 +100,8 @@ app.post('/fetch_external_image', async (req, res) => {
     } catch (err) {
         return res.status(404).send(err.toString())
     }
-})
+});
+
+app.get("/facedetect", faceController.FaceDetect);
 
 app.listen(process.env.PORT || 3000, () => console.log('Listening on port 3000!'))

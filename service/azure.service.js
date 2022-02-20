@@ -23,7 +23,7 @@ class AzureFaceApiService{
         }
     }
 
-    detect = async(image_url) =>{
+    detect = async(image_url, returnFaceLandmarks=false) =>{
         console.log("========DETECT FACES========");
         console.log(image_url);
         try {
@@ -37,7 +37,8 @@ class AzureFaceApiService{
             let detected_faces = await this.client.face.detectWithUrl(image_url,
                 {
                     detectionModel: "detection_03",
-                    recognitionModel: "recognition_04"
+                    recognitionModel: "recognition_04",
+                    returnFaceLandmarks: returnFaceLandmarks
                 });
             console.log (detected_faces.length + " face(s) detected from image " + image_url + ".");           
             return detected_faces;

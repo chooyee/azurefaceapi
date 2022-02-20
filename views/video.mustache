@@ -1,0 +1,641 @@
+
+<!--
+=========================================================
+* BLK Design System- v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/blk-design-system
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <title>
+    Digital Innovation & Design • Alliance Bank
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="./assets/css/blk-design-system.css?v=1.0.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="./assets/demo/demo.css" rel="stylesheet" />
+   <style>
+    input#file {
+      display: inline-block;
+      width: 100%;
+      padding: 120px 0 0 0;
+      height: 100px;
+      overflow: hidden;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      background: url('https://cdn1.iconfinder.com/data/icons/hawcons/32/698394-icon-130-cloud-upload-512.png') center center no-repeat #e4e4e4;
+      border-radius: 20px;
+      background-size: 60px 60px;
+    }
+    input[type="file"]::file-selector-button {
+      display:none;
+    }
+
+    /* Chrome, Edge & Safari */
+    input[type="file"]::-webkit-file-upload-button {
+      display:none;
+    }
+    .box {
+      float: left;
+      width: 33.33%;
+      padding: 50px;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+  </style>
+</head>
+
+<body class="index-page">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="100">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="./" rel="tooltip" title="Digital Innovation & Design • Alliance Bank" data-placement="bottom" target="_blank">
+          <img src="./assets/img/alliance-logo.png" id="overlay" style="display:block;">
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a>
+                Digital Innovation & Design•
+              </a>
+            </div>
+            <div class="col-6 collapse-close text-right">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/alliancebankmy" target="_blank">
+              <i class="fab fa-twitter"></i>
+              <p class="d-lg-none d-xl-none">Twitter</p>
+            </a>
+          </li>
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/AllianceBankMalaysia" target="_blank">
+              <i class="fab fa-facebook-square"></i>
+              <p class="d-lg-none d-xl-none">Facebook</p>
+            </a>
+          </li>
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/alliancebankmalaysia/" target="_blank">
+              <i class="fab fa-instagram"></i>
+              <p class="d-lg-none d-xl-none">Instagram</p>
+            </a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <div class="wrapper">
+    
+    <div class="main">
+    
+      <div class="section section-tabs">
+        <div class="container">
+          <div class="title">
+            <h3 class="mb-3">Test Image Upload</h3>
+          </div>
+          <div class="row">           
+             <div class="col-md-10 ml-auto col-xl-8 mr-auto">
+              <div class="mb-3">
+                <small class="text-uppercase font-weight-bold">Snap Your NRIC</small>
+              </div>
+              <!-- Nav tabs -->
+              <div class="card">
+                <div class="card-header">
+                  <ul class="nav nav-tabs nav-tabs-primary" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+                        <i class="tim-icons icon-spaceship"></i> Profile
+                      </a>
+                    </li>                   
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <!-- Tab panes -->
+                  <div class="tab-content tab-space">
+                    <div class="tab-pane active" id="link1">
+                        <div class="input-group">  
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">
+                              <i class="tim-icons icon-single-02"></i>
+                            </div>
+                          </div>
+                          <input id="txtname" type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="input-group">  
+                          <a href="javascript:void(0)" class="btn btn-neutral btn-simple btn-lg" id="btnStartVideo" style="display:none">Start Video</a>
+                          <div class="input-group">  
+                            <blockquote id="lblmsg" style="display:None">
+                              <p class="blockquote blockquote-primary">
+                              </p>
+                            </blockquote>
+                          </div>
+                        <canvas id="canvasOutput" width="400" height=300></canvas>
+                        </div>
+                       
+                        <div style="display:none">
+                        <video id="myVidPlayer" controls muted autoplay width="400"  height=300></video>
+                        </div>
+                        <div class="input-group">                          
+                           <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-lg" id="btnSpeak">Start Verification</a>
+                           &nbsp;&nbsp;&nbsp;&nbsp;
+                           <a href="javascript:void(0)" class="btn btn-neutral btn-simple btn-lg" id="btnClear">Clear</a>
+                        </div>
+                        <div class="clearfix" id="canvascontainer">
+                        </div>     
+                    </div>                   
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Section Tabs -->
+      
+      <!--  End Modal -->
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h1 class="title">Digital Innovation & Design•</h1>
+          </div>
+          <div class="col-md-3">
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="./index.html" class="nav-link">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./examples/landing-page.html" class="nav-link">
+                  Landing
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./examples/register-page.html" class="nav-link">
+                  Register
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./examples/profile-page.html" class="nav-link">
+                  Profile
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="nav">
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  Contact Us
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  About Us
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  Blog
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="https://opensource.org/licenses/MIT" class="nav-link">
+                  License
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3 class="title">Follow us:</h3>
+            <div class="btn-wrapper profile">
+              <a target="_blank" href="https://twitter.com/alliancebankmy" class="btn btn-icon btn-neutral btn-round btn-simple" data-toggle="tooltip" data-original-title="Follow us">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a target="_blank" href="https://www.facebook.com/AllianceBankMalaysia" class="btn btn-icon btn-neutral btn-round btn-simple" data-toggle="tooltip" data-original-title="Like us">
+                <i class="fab fa-facebook-square"></i>
+              </a>
+              <a target="_blank" href="https://www.instagram.com/alliancebankmalaysia/" class="btn btn-icon btn-neutral  btn-round btn-simple" data-toggle="tooltip" data-original-title="Follow us">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <input type="hidden" id="fprint">
+
+  <!--   Core JS Files   -->
+  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="./assets/demo/demo.js"></script>
+  <!-- Control Center for Black UI Kit: parallax effects, scripts for the example pages etc -->
+  <script src="./assets/js/blk-design-system.min.js?v=1.0.0" type="text/javascript"></script>
+  <script async src="./assets/js/opencv.js" onload="onOpenCvReady();" type="text/javascript"></script>
+  <script src="./assets/js/utils.js" type="text/javascript"></script>
+  <script>
+    
+    const msg = '您好，请眨眼睛。 Please blink your eye slowly'
+    //const lang = 'en-US'
+    const lang = 'zh-TW'
+    const voiceIndex = 0
+
+    const speak = async text => {
+        if (!speechSynthesis) {
+            return
+        }
+        const message = new SpeechSynthesisUtterance(text)
+        //message.pitch = 12
+        //message.rate = 0.8
+        message.voice = await chooseVoice()
+        speechSynthesis.speak(message)
+    }
+
+    const getVoices = () => {
+        return new Promise(resolve => {
+            let voices = speechSynthesis.getVoices()
+            if (voices.length) {
+            resolve(voices)
+            return
+            }
+            speechSynthesis.onvoiceschanged = () => {
+            voices = speechSynthesis.getVoices()
+            resolve(voices)
+            }
+        })
+    }
+
+    const printVoicesList = async () => {
+        ;(await getVoices()).forEach(voice => {
+            console.log(voice.name, voice.lang)
+        })
+    }
+    const chooseVoice = async () => {
+        const voices = (await getVoices()).filter(voice => voice.lang == lang)
+
+        return new Promise(resolve => {
+                resolve(voices[voiceIndex])
+            })
+    }
+
+  </script>
+  <script>
+    const video = document.querySelector('#myVidPlayer');
+    var utils = new Utils('errorMessage');
+    let src;
+    let dst;
+    let gray;
+    let cap;
+    let faces;
+    let eyes;
+    let classifier;
+    let eyeCascade;
+    const FPS = 120;
+    let streaming = false;
+    let faceCascadeFile = 'haarcascade_frontalface_default.xml';
+    let eyeCascadeFile = 'haarcascade_eye.xml';
+    let faceFound = false;
+
+    function onOpenCvReady(){
+      cv['onRuntimeInitialized']=()=>{
+        
+        let faceCascadeFileUrl = './assets/js/haarcascade_frontalface_default.xml';
+        let eyeCascadeFileUrl = './assets/js/haarcascade_eye.xml';
+        utils.createFileFromUrl('haarcascade_frontalface_default.xml', faceCascadeFileUrl, () => {
+            //startAndStop.removeAttribute('disabled');
+            utils.createFileFromUrl('haarcascade_eye.xml', eyeCascadeFileUrl, () => {
+                console.log('eye cascade ready');
+                startVideo();
+            })
+        });
+      };
+      
+      
+    }
+   
+    function startOpenCV()
+    {
+      console.log("video width: " + video.width);
+      src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+      dst = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+      gray = new cv.Mat();
+      cap = new cv.VideoCapture(video);
+      faces = new cv.RectVector();
+      eyes = new cv.RectVector();
+      classifier = new cv.CascadeClassifier();
+      eyeCascade = new cv.CascadeClassifier();
+      // load pre-trained classifiers
+      classifier.load(faceCascadeFile);
+      eyeCascade.load(eyeCascadeFile);
+      processVideo();
+    }
+
+    function processVideo() {
+        try {
+            if (!streaming) {
+                // clean and stop.
+                src.delete();
+                dst.delete();
+                gray.delete();
+                faces.delete();
+                classifier.delete();
+                return;
+            }
+            let begin = Date.now();
+            // start processing.
+            cap.read(src);
+            src.copyTo(dst);
+            cv.cvtColor(dst, gray, cv.COLOR_RGBA2GRAY, 0);
+            cv.imshow('canvasOutput', gray);
+            // detect faces.
+            classifier.detectMultiScale(gray, faces, 1.1, 3, 0);
+
+            //console.log("face" + faces);
+            // draw faces.
+            if (faces.size() < 1)
+            {
+              faceFound = false;
+              let msg = "Sorry I can't see your face!";
+              let fpoint1 = new cv.Point(40, 40);
+              
+              cv.putText(dst, msg, fpoint1, cv.FONT_HERSHEY_SIMPLEX, 1, [255, 0, 0, 255], 3,1,false);
+              {{! $('.blockquote').html("Sorry I can't find human face. Please move closer to the camera.");
+              $('#lblmsg').show(); }}
+            }
+            else{
+              faceFound = true;
+              {{! $('#lblmsg').hide(); }}
+            }
+
+            for (let i = 0; i < faces.size(); ++i) {
+                let face = faces.get(i);
+                let point1 = new cv.Point(face.x, face.y);
+                let point2 = new cv.Point(face.x + face.width, face.y + face.height);
+                cv.rectangle(dst, point1, point2, [255, 0, 0, 255]);
+                
+                {{! eyeCascade.detectMultiScale(gray, eyes);
+
+                for (let j = 0; j < eyes.size(); ++j) {
+                  let eyepoint1 = new cv.Point(eyes.get(j).x, eyes.get(j).y);
+                  let eyepoint2 = new cv.Point(eyes.get(j).x + eyes.get(j).width,
+                  eyes.get(j).y + eyes.get(j).height);       
+                  cv.rectangle(dst, eyepoint1, eyepoint2, [0, 255, 255, 255]);
+                } }}
+            }
+            cv.imshow('canvasOutput', dst);
+            // schedule the next one.
+            let delay = 1000/FPS - (Date.now() - begin);
+            setTimeout(processVideo, delay);
+        } catch (err) {
+            console.log("err" + err);
+        }
+    };
+
+  </script>
+  <script>
+    //var canvas = document.querySelector("canvas");
+   
+    var timer;
+	  //w-width,h-height
+    var w, h;
+    const canvasCount = 5;
+    var faceProcessCount = 1;
+    var fd = new FormData();
+	  //new
+    function snapshot(canvas){
+      var context = canvas.getContext("2d");
+      context.fillRect(0, 0, w, h);
+      context.drawImage(video, 0, 0, w, h);
+      canvas.style.display = "block";
+    }
+
+    function startVideo(){
+       window.navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+        .then(stream => {
+            video.srcObject = stream;
+            video.onloadedmetadata = (e) => {
+                video.play();
+                
+                //new
+                w = video.videoWidth;
+                h = video.videoHeight;
+               
+                speak('Please click the "Start Verifcation" button to start!');
+                streaming = true;
+                startOpenCV();
+            };
+            
+    	})
+        .catch(error => {
+        	alert('You have to enable the mike and the camera');
+    	});
+
+    }
+
+    stopCamera = function() {
+        if (video) {
+            video.pause();
+            video.srcObject = null;
+            streaming= false;
+        }
+  
+    };
+    const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3')
+    .then(FingerprintJS => FingerprintJS.load())
+    fpPromise
+    .then(fp => fp.get())
+        .then(result => {
+            $('#fprint').val(result.visitorId)
+        })
+
+    $(document).ready(function() {
+        for (i=1; i<=canvasCount;i++)
+        {
+          createCanvas(i);
+        }
+        
+        blackKit.initDatePicker();
+        blackKit.initSliders();  
+
+        $('#btnSpeak').click(function(){
+            speak(msg);
+            timer = setInterval(recordFace, 1000);
+            $('#btnSpeak').attr('disabled', 'disabled')
+            
+        });
+        $('#btnClear').click(function(){
+            
+            faceProcessCount=1;
+            for (i=1; i<=canvasCount;i++)
+            {
+              canvas = document.querySelector("#canvas_" + i);
+              var context = canvas.getContext('2d');
+              context.clearRect(0, 0, canvas.width, canvas.height); //clear html5 canvas
+            }
+        });
+         $('#btnStartVideo').click(function(){
+            if (!streaming)
+            {
+              $(this).html("Stop Camera");
+              startVideo();
+            }
+            else
+            {
+              $(this).html("Start Camera");
+              stopCamera();
+              streaming=false;
+            }
+        });
+
+        printVoicesList()
+    });
+
+    function recordFace() {
+      if (faceFound){
+        console.log("canvas_" + faceProcessCount);
+        canvas = document.querySelector("#canvas_" + faceProcessCount);
+        console.log(canvas.id);
+        canvas.width = w;
+        canvas.height = h;
+        snapshot(canvas);
+        //exportBlob(canvas);
+        faceProcessCount++;
+        if (faceProcessCount>canvasCount)
+        {
+          stopCamera();
+          speak('Recording done!');
+          clearInterval(timer);
+          $('#btnSpeak').removeAttr('disabled')
+          faceProcessCount = 1;
+          Upload(fd);
+          
+        }
+      }
+     
+    }
+
+    {{! exportBlob = async (canvas)=>{      
+      await canvas.toBlob(function(blob) { 
+        console.log(blob)
+        fd.append('images', blob, canvas.id);      
+      },'image/jpeg', 0.95);
+    } }}
+
+    function exportBlob(mycanvas) {
+      return new Promise(function(resolve, reject) {
+        mycanvas.toBlob(function(blob) { 
+          console.log(blob)
+          fd.append('images', blob, canvas.id);      
+          resolve(blob);
+        },'image/jpeg', 0.95);
+
+      })
+    }
+
+    function createCanvas(i)
+    {
+      var canvas = document.createElement('canvas');
+      canvas.style.display = "block";
+      canvas.id = "canvas_" + i;
+      canvas.width = w;
+      canvas.height = h;
+      canvas.class = "box";
+      //var body = document.getElementsByTagName("body")[0];
+      //body.appendChild(canvas);
+      var container = document.getElementById("canvascontainer");
+      container.appendChild(canvas);
+      return canvas;
+    }
+
+    async function Upload(fd)
+    {
+      for (i=1; i<=canvasCount;i++)
+      {
+        canvas = document.querySelector("#canvas_" + i);
+        await exportBlob(canvas);
+        
+      }
+      fd.append('userid', $('#txtname').val());
+      fd.append('fingerprint', $('#fprint').val());
+
+      $.ajax({
+          url: '/video',
+          type: 'post',
+          data: fd,
+          contentType: false,
+          processData: false,
+          success: function(response){
+              console.log(response);
+              if(response != 0){
+                if (response.status=='success')
+                {
+                  speak('Yes you are human!');
+                  alert('Yes you are human!');
+                }
+                else{
+                  speak('Please try again and blink slowly!');
+                  alert('Please try again and blink slowly!');
+                }
+              }
+              else{
+                  alert('file not uploaded');
+              }
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) {
+              console.log(errorThrown);
+              alert(errorThrown);
+          }
+      });
+    }
+  </script>
+
+</body>
+
+</html>
