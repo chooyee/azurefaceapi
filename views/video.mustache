@@ -170,11 +170,11 @@
                               </p>
                             </blockquote>
                           </div>
-                        <canvas id="canvasOutput" width="400" height=300></canvas>
+                        <canvas id="canvasOutput" width="320" height=240></canvas>
                         </div>
                        
                         <div style="display:none">
-                        <video id="myVidPlayer" controls muted autoplay width="400"  height=300></video>
+                        <video id="myVidPlayer" controls muted autoplay width="320"  height=240></video>
                         </div>
                         <div class="input-group">                          
                            <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-lg" id="btnSpeak">Start Verification</a>
@@ -629,8 +629,8 @@
               }
           },
           error: function(XMLHttpRequest, textStatus, errorThrown) {
-              console.log(errorThrown);
-              alert(errorThrown);
+            
+              alert(errorThrown + ":" + XMLHttpRequest.responseJSON.message);
           }
       });
     }

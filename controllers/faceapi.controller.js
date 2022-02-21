@@ -56,69 +56,80 @@ exports.UploadMultiple = async(req, res, next)=>{
 
     var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress 
     var useragent = req.headers["user-agent"]
-    var blinkmainId = await BlinkDB.Blink.CreateMain(req.body.userid, req.body.fingerprint, ip, useragent);
-    console.log("blinkmainId: " + blinkmainId);
-
-    let blinkStatus = false;
+  
     let leftEyeOpen = 0;
     let leftEyeClose = 0;
     let rightEyeOpen = 0;
     let rightEyeClose = 0;
 
+    try{
+        var blinkmainId = await BlinkDB.Blink.CreateMain(req.body.userid, req.body.fingerprint, ip, useragent);
+        console.log("blinkmainId: " + blinkmainId);
 
-    for(i=0;i<req.files.length;i++)
-    {
-        let file = req.files[i];
-        console.log('Upload to s3');
-        const uploadS3Result = await S3Service._uploadS3(file.path, file.filename, s3BucketName);
-
-        if (uploadS3Result.status==Enum.Status.Success)
+        for(i=0;i<req.files.length;i++)
         {
-            logger.log.info(`uploaded to ${uploadS3Result.s3Loc}`);
-            console.log(`uploaded to ${uploadS3Result.s3Loc}`);
-            
-            let result = await AzureFaceApi.detect(uploadS3Result.s3Loc, true);
-            let eyeBlinkResult = {};
-          
-            if (result.length>0)
+            let file = req.files[i];
+            console.log('Upload to s3');
+            const uploadS3Result = await S3Service._uploadS3(file.path, file.filename, s3BucketName);
+
+            if (uploadS3Result.status==Enum.Status.Success)
             {
-                let eyeCloseValue = 4;
-                faceLandmarks = result[0].faceLandmarks;
-                let leftEye = faceLandmarks.eyeLeftBottom.y - faceLandmarks.eyeLeftTop.y;
-                let rightEye = faceLandmarks.eyeRightBottom.y - faceLandmarks.eyeRightTop.y;
-        
-                if (leftEye<eyeCloseValue)
+                logger.log.info(`uploaded to ${uploadS3Result.s3Loc}`);
+                console.log(`uploaded to ${uploadS3Result.s3Loc}`);
+                
+                let result = await AzureFaceApi.detect(uploadS3Result.s3Loc, true);
+                let eyeBlinkResult = {};
+            
+                if (result.length>0)
                 {
-                    eyeBlinkResult["left"] = true;
-                    leftEyeClose++;
+                    let eyeCloseValue = 4;
+                    faceLandmarks = result[0].faceLandmarks;
+                    let leftEye = faceLandmarks.eyeLeftBottom.y - faceLandmarks.eyeLeftTop.y;
+                    let rightEye = faceLandmarks.eyeRightBottom.y - faceLandmarks.eyeRightTop.y;
+            
+                    if (leftEye<eyeCloseValue)
+                    {
+                        eyeBlinkResult["left"] = true;
+                        leftEyeClose++;
+                    }
+                    else
+                    {
+                        eyeBlinkResult["left"] = false;
+                        leftEyeOpen++;
+                    }
+            
+                    if (rightEye<eyeCloseValue)
+                    {
+                        eyeBlinkResult["right"] = true;
+                        rightEyeClose++;
+                    }
+                    else
+                    {
+                        eyeBlinkResult["right"] = false;
+                        rightEyeOpen++;
+                    }
                 }
-                else
-                {
-                    eyeBlinkResult["left"] = false;
-                    leftEyeOpen++;
-                }
-        
-                if (rightEye<eyeCloseValue)
-                {
-                    eyeBlinkResult["right"] = true;
-                    rightEyeClose++;
-                }
-                else
-                {
-                    eyeBlinkResult["right"] = false;
-                    rightEyeOpen++;
-                }
+                BlinkDB.Blink.CreateLog(blinkmainId, file.path,uploadS3Result.s3Loc, file.filename,JSON.stringify(result),  eyeBlinkResult["left"],  eyeBlinkResult["right"]);
             }
-            BlinkDB.Blink.CreateLog(blinkmainId, file.path,uploadS3Result.s3Loc, file.filename,JSON.stringify(result),  eyeBlinkResult["left"],  eyeBlinkResult["right"]);
+        }
+
+        
+        if (leftEyeOpen>0 && leftEyeClose>0 && rightEyeOpen>0 && rightEyeClose >0)
+        {
+            BlinkDB.Blink.Update(blinkmainId,"",true);
+            res.status(200).send({status: Enum.Status.Success, message: "Success"});
+        }
+        else
+        {
+            BlinkDB.Blink.Update(blinkmainId,"",false);
+            res.status(200).send({status: Enum.Status.Fail, message: "Fail"});
         }
     }
-
-    
-    if (leftEyeOpen>0 && leftEyeClose>0 && rightEyeOpen>0 && rightEyeClose >0)
-        res.status(200).send({status: Enum.Status.Success, message: "Success"});
-    else
-        res.status(200).send({status: Enum.Status.Fail, message: "Fail"});
-    
+    catch(err)
+    {
+        logger.log.error(`BlinkModel=>CreateLog: Error: ${err.message}`);
+        res.status(500).send({status: Enum.Status.Fail, message: err.message});
+    }
 }
 
 exports.FaceMatch = async(req, res)=>{

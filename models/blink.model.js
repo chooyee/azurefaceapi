@@ -44,12 +44,12 @@ class BlinkModel{
         })
     }
     
-    Update = async (id, confidence, identical, message, status) =>{
-        console.log('TransactionModel:Update');
+    Update = async (blinkmainId, message, status) =>{
+        console.log('BlinkModel:Update');
 
-        await this.TransacDB.update({ confidence: confidence,  identical:identical, message:message, status:status}, {
+        await this.BlinkLogDB.update({ message: message,  status:status}, {
             where: {
-                id: id
+                id: blinkmainId
             }
         });
        return true;
