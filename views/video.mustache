@@ -170,11 +170,11 @@
                               </p>
                             </blockquote>
                           </div>
-                        <canvas id="canvasOutput" width="320" height=240></canvas>
+                        <canvas id="canvasOutput"></canvas>
                         </div>
                        
                         <div style="display:none">
-                        <video id="myVidPlayer" controls muted autoplay width="320"  height=240></video>
+                        <video id="myVidPlayer" controls muted autoplay></video>
                         </div>
                         <div class="input-group">                          
                            <a href="javascript:void(0)" class="btn btn-primary btn-simple btn-lg" id="btnSpeak">Start Verification</a>
@@ -466,7 +466,8 @@
                 //new
                 w = video.videoWidth;
                 h = video.videoHeight;
-               
+                video.width = w;
+                video.height = h;
                 speak('Please click the "Start Verifcation" button to start!');
                 streaming = true;
                 startOpenCV();
