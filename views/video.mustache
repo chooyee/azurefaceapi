@@ -520,6 +520,18 @@
               var context = canvas.getContext('2d');
               context.clearRect(0, 0, canvas.width, canvas.height); //clear html5 canvas
             }
+
+            if (!streaming)
+            {
+              //$(this).html("Stop Camera");
+              startVideo();
+            }
+            else
+            {
+              //$(this).html("Start Camera");
+              stopCamera();
+              streaming=false;
+            }
         });
          $('#btnStartVideo').click(function(){
             if (!streaming)
@@ -552,6 +564,7 @@
         {
           stopCamera();
           speak('Recording done!');
+          streaming = false;
           clearInterval(timer);
           $('#btnSpeak').removeAttr('disabled')
           faceProcessCount = 1;
