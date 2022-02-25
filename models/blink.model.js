@@ -10,6 +10,7 @@ class BlinkModel{
     }
 
     CreateMain = async(userid, fingerprint, ipaddress, useragent)=>{
+
         return this.BlinkMainDB.create({              
             userid: userid,
             fingerprint: fingerprint,
@@ -20,6 +21,7 @@ class BlinkModel{
             return result.id;
         }).catch((err)=>{
             console.log(`BlinkModel=>CreateMain: Error: ${err.message}`);            
+            logger.log.error(`BlinkModel=>CreateMain: Error: ${err.message} : ${userid} : ${fingerprint} : ${ipaddress} : ${useragent}`);
             logger.log.error(`BlinkModel=>CreateMain: Error: ${err.message}`);
             throw new Error(`BlinkModel=>CreateMain: Error: ${err.message}`);
         })

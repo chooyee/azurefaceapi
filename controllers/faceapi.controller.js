@@ -51,16 +51,19 @@ exports.Upload = async(req, res, next)=>{
 }
 
 exports.UploadMultiple = async(req, res, next)=>{
+    const eyeCloseValue = 55;
     console.log(req.body.userid);
     let s3BucketName = "faceapi.chooyee.co/blinktest";
 
     var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress 
     var useragent = req.headers["user-agent"]
   
-    let leftEyeOpen = 0;
-    let leftEyeClose = 0;
-    let rightEyeOpen = 0;
-    let rightEyeClose = 0;
+    // let leftEyeOpen = 0;
+    // let leftEyeClose = 0;
+    // let rightEyeOpen = 0;
+    // let rightEyeClose = 0;
+
+    let eyeArray = [];
 
     try{
         var blinkmainId = await BlinkDB.Blink.CreateMain(req.body.userid, req.body.fingerprint, ip, useragent);
@@ -82,39 +85,60 @@ exports.UploadMultiple = async(req, res, next)=>{
             
                 if (result.length>0)
                 {
-                    let eyeCloseValue = 4;
+                   
                     faceLandmarks = result[0].faceLandmarks;
                     let leftEye = faceLandmarks.eyeLeftBottom.y - faceLandmarks.eyeLeftTop.y;
+                    logger.log.debug(`leftEye: ${leftEye}`);
                     let rightEye = faceLandmarks.eyeRightBottom.y - faceLandmarks.eyeRightTop.y;
+                    logger.log.debug(`rightEye: ${rightEye}`);
+
+                    let eyesObj = {};
+                    eyesObj['left'] = leftEye;
+                    eyesObj['right'] = rightEye;
+                    eyeArray.push(eyesObj);
+
+                    // if (leftEye<=eyeCloseValue)
+                    // {
+                    //     eyeBlinkResult["left"] = true;
+                    //     leftEyeClose++;
+                    // }
+                    // else
+                    // {
+                    //     eyeBlinkResult["left"] = false;
+                    //     leftEyeOpen++;
+                    // }
             
-                    if (leftEye<eyeCloseValue)
-                    {
-                        eyeBlinkResult["left"] = true;
-                        leftEyeClose++;
-                    }
-                    else
-                    {
-                        eyeBlinkResult["left"] = false;
-                        leftEyeOpen++;
-                    }
-            
-                    if (rightEye<eyeCloseValue)
-                    {
-                        eyeBlinkResult["right"] = true;
-                        rightEyeClose++;
-                    }
-                    else
-                    {
-                        eyeBlinkResult["right"] = false;
-                        rightEyeOpen++;
-                    }
+                    // if (rightEye<=eyeCloseValue)
+                    // {
+                    //     eyeBlinkResult["right"] = true;
+                    //     rightEyeClose++;
+                    // }
+                    // else
+                    // {
+                    //     eyeBlinkResult["right"] = false;
+                    //     rightEyeOpen++;
+                    // }
                 }
-                BlinkDB.Blink.CreateLog(blinkmainId, file.path,uploadS3Result.s3Loc, file.filename,JSON.stringify(result),  eyeBlinkResult["left"],  eyeBlinkResult["right"]);
+                //BlinkDB.Blink.CreateLog(blinkmainId, file.path,uploadS3Result.s3Loc, file.filename,JSON.stringify(result),  eyeBlinkResult["left"],  eyeBlinkResult["right"]);
             }
         }
 
+        eyeArray.sort(compare);
+
+        // for(i=0;i<eyeArray.length;i++)
+        // {
+        //     console.log(`${i} : ${eyeArray[i].left} : ${eyeArray[i].right}`);
+        // }
         
-        if (leftEyeOpen>0 && leftEyeClose>0 && rightEyeOpen>0 && rightEyeClose >0)
+        eyeWidest = eyeArray[eyeArray.length -1];
+        eyeSmallest = eyeArray[0];
+
+        rightEyeRatio = Math.round((eyeSmallest.right/eyeWidest.right) * 100);
+        leftEyeRatio = Math.round((eyeSmallest.left/eyeWidest.left) * 100);
+
+        console.log(rightEyeRatio);
+        console.log(leftEyeRatio);
+        if (rightEyeRatio <=eyeCloseValue && leftEyeRatio<= eyeCloseValue)
         {
             BlinkDB.Blink.Update(blinkmainId,"",true);
             res.status(200).send({status: Enum.Status.Success, message: "Success"});
@@ -131,6 +155,16 @@ exports.UploadMultiple = async(req, res, next)=>{
         res.status(500).send({status: Enum.Status.Fail, message: err.message});
     }
 }
+
+function compare( a, b ) {
+    if ( a.left < b.left ){
+      return -1;
+    }
+    if ( a.left > b.left ){
+      return 1;
+    }
+    return 0;
+  }
 
 exports.FaceMatch = async(req, res)=>{
     let result = await AzureFaceApi.faceMatch(req.query.url);

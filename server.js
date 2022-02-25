@@ -24,8 +24,8 @@ app.set('view engine', 'mustache');
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 
-const db = require("./models");
-db.sequelize.sync({'alter':true});
+// const db = require("./models");
+// db.sequelize.sync({'alter':true});
 
 const viewsDir = path.join(__dirname, 'views');
 app.use(express.static(viewsDir));
