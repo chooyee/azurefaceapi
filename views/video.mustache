@@ -530,7 +530,8 @@
             $('#btnSpeak').attr('disabled', 'disabled');
         });
         $('#btnClear').click(function(){
-            
+            $('#loader').show();
+            $('#modalmsg').html('');
             fd = new FormData();
             faceProcessCount=1;
             for (i=1; i<=canvasCount;i++)

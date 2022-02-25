@@ -81,8 +81,7 @@ exports.UploadMultiple = async(req, res, next)=>{
                 console.log(`uploaded to ${uploadS3Result.s3Loc}`);
                 
                 let result = await AzureFaceApi.detect(uploadS3Result.s3Loc, true);
-                let eyeBlinkResult = {};
-            
+               
                 if (result.length>0)
                 {
                    
@@ -97,6 +96,7 @@ exports.UploadMultiple = async(req, res, next)=>{
                     eyesObj['right'] = rightEye;
                     eyeArray.push(eyesObj);
 
+                    BlinkDB.Blink.CreateLog(blinkmainId, file.path,uploadS3Result.s3Loc, file.filename,JSON.stringify(result),  leftEye,  rightEye);
                     // if (leftEye<=eyeCloseValue)
                     // {
                     //     eyeBlinkResult["left"] = true;
@@ -119,7 +119,7 @@ exports.UploadMultiple = async(req, res, next)=>{
                     //     rightEyeOpen++;
                     // }
                 }
-                //BlinkDB.Blink.CreateLog(blinkmainId, file.path,uploadS3Result.s3Loc, file.filename,JSON.stringify(result),  eyeBlinkResult["left"],  eyeBlinkResult["right"]);
+                
             }
         }
 
@@ -140,12 +140,14 @@ exports.UploadMultiple = async(req, res, next)=>{
         console.log(leftEyeRatio);
         if (rightEyeRatio <=eyeCloseValue && leftEyeRatio<= eyeCloseValue)
         {
-            await BlinkDB.Blink.Update(blinkmainId,"",true);
+            result = await BlinkDB.Blink.Update(blinkmainId,"",true);
+            console.log(result);
             res.status(200).send({status: Enum.Status.Success, message: "Success"});
         }
         else
         {
-            await BlinkDB.Blink.Update(blinkmainId,"",false);
+            result = await BlinkDB.Blink.Update(blinkmainId,"",false);
+            console.log(result);
             res.status(200).send({status: Enum.Status.Fail, message: "Fail"});
         }
     }

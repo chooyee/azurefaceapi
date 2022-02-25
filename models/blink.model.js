@@ -47,14 +47,20 @@ class BlinkModel{
     }
     
     Update = async (blinkmainId, message, status) =>{
-        console.log('BlinkModel:Update');
-
-        await this.BlinkLogDB.update({ message: message,  status:status}, {
+        console.log(`BlinkModel:Update: ${blinkmainId} : ${message} : ${status}`);
+        try{
+        return this.BlinkMainDB.update({ message: message,  status:status}, {
             where: {
                 id: blinkmainId
             }
         });
-       return true;
+        }
+        catch(err)
+        {
+            console.log(`BlinkModel=>Update: Error: ${err.message}`);            
+            logger.log.error(`BlinkModel=>Update: Error: ${err.message}`);
+        }
+      
     }
 
 }
