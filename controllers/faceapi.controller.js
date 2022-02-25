@@ -140,18 +140,19 @@ exports.UploadMultiple = async(req, res, next)=>{
         console.log(leftEyeRatio);
         if (rightEyeRatio <=eyeCloseValue && leftEyeRatio<= eyeCloseValue)
         {
-            BlinkDB.Blink.Update(blinkmainId,"",true);
+            await BlinkDB.Blink.Update(blinkmainId,"",true);
             res.status(200).send({status: Enum.Status.Success, message: "Success"});
         }
         else
         {
-            BlinkDB.Blink.Update(blinkmainId,"",false);
+            await BlinkDB.Blink.Update(blinkmainId,"",false);
             res.status(200).send({status: Enum.Status.Fail, message: "Fail"});
         }
     }
     catch(err)
     {
         logger.log.error(`BlinkModel=>CreateLog: Error: ${err.message}`);
+        await BlinkDB.Blink.Update(blinkmainId,err.message,false);
         res.status(500).send({status: Enum.Status.Fail, message: err.message});
     }
 }
